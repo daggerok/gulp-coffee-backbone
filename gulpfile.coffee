@@ -14,8 +14,8 @@ gulp       = require 'gulp'
 remove     = require 'gulp-rimraf'
 browserify = require 'gulp-browserify'
 concat     = require 'gulp-concat'
-sourcemaps = require 'gulp-sourcemaps'
-uglify     = require 'gulp-uglify'
+#sourcemaps = require 'gulp-sourcemaps'
+#uglify     = require 'gulp-uglify'
 imagemin   = require 'gulp-imagemin'
 pngquant   = require 'imagemin-pngquant'
 connect    = require 'gulp-connect'
@@ -41,10 +41,10 @@ gulp.task 'js', ->
       .on('error', log)
     .pipe(concat(project.bundle))
       .on('error', log)
-    .pipe(sourcemaps.init())
-    .pipe(uglify())
-      .on('error', log)
-    .pipe(sourcemaps.write('.'))
+    #.pipe(sourcemaps.init())
+    #.pipe(uglify())
+    #  .on('error', log)
+    #.pipe(sourcemaps.write('.'))
     .pipe(gulp.dest project.buildDir)
     .pipe(connect.reload())
 
