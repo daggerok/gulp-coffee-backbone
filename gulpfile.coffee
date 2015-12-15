@@ -14,6 +14,7 @@ gulp    = require 'gulp'
 coffee  = require 'gulp-coffee'
 remove  = require 'gulp-rimraf'
 connect = require 'gulp-connect'
+open    = require 'gulp-open'
 concat  = require 'gulp-concat'
 require 'colors'
 
@@ -77,3 +78,4 @@ gulp.task 'watch', ['default', 'connect'], ->
   gulp.watch project.srcDir + project.coffee, ['coffee']
   gulp.watch project.srcDir + project.html, ['html']
   gulp.watch project.apiDir + project.json, ['api']
+  gulp.src("#{project.buildDir}index.html").pipe(open())
