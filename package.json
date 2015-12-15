@@ -10,7 +10,6 @@
     "start": "npm run gulp watch"
   },
   "devDependencies": {
-    "backbone": "^1.2.3",
     "coffee-script": "^1.10.0",
     "colors": "^1.1.2",
     "gulp": "^3.9.0",
@@ -21,7 +20,9 @@
   },
   "description": "gulp-coffee-backbone [![build](https://travis-ci.org/daggerok/gulp-coffee-backbone.svg?branch=master)](https://travis-ci.org/daggerok/gulp-coffee-backbone) ====================",
   "main": "dist/bundle.js",
-  "dependencies": {},
+  "dependencies": {
+    "backbone": "^1.2.3"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/daggerok/gulp-coffee-backbone.git"
