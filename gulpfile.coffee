@@ -1,21 +1,25 @@
 project =
-  srcDir:   './src/'
-  buildDir: './dist/'
-  modules:  './node_modules/'
-  main:     './src/scripts/index.coffee'
+  srcDir:   'src/'
+  main:     'src/scripts/index.coffee'
+  buildDir: 'dist/'
   bundle:   'bundle.js'
-  index:    './dist/index.html'
-  imgs:     './src/img/**/*.*'
-  coffee:   '**/*.coffee'
-  html:     '**/*.html'
-  json:     '**/*.json'
+  coffee:   'src/**/*.coffee'
+  html:     'src/**/*.html'
+  imgs:     'src/img/**/*.*'
+  json:     'src/**/*.json'
+  uri:      'http://localhost:8080/'
+  open:     false
 
 gulp       = require 'gulp'
 remove     = require 'gulp-rimraf'
+browserify = require 'gulp-browserify'
+concat     = require 'gulp-concat'
+sourcemaps = require 'gulp-sourcemaps'
+uglify     = require 'gulp-uglify'
+imagemin   = require 'gulp-imagemin'
+pngquant   = require 'imagemin-pngquant'
 connect    = require 'gulp-connect'
 open       = require 'gulp-open'
-concat     = require 'gulp-concat'
-browserify = require 'gulp-browserify'
 
 log = (error) ->
   console.log [
@@ -33,19 +37,28 @@ gulp.task 'js', ->
     .pipe browserify
         transform: ['coffeeify']
         extensions: ['.coffee']
+        debug: true
       .on('error', log)
     .pipe(concat(project.bundle))
       .on('error', log)
+    .pipe(sourcemaps.init())
+    .pipe(uglify())
+      .on('error', log)
+    .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest project.buildDir)
     .pipe(connect.reload())
 
 gulp.task 'html', ->
-  gulp.src(project.srcDir + project.html, base: project.srcDir)
+  gulp.src(project.html, base: project.srcDir)
     .pipe(gulp.dest project.buildDir)
     .pipe(connect.reload())
 
 gulp.task 'img', ->
   gulp.src(project.imgs, base: project.srcDir)
+    .pipe imagemin
+      progressive: true
+      svgoPlugins: [ removeViewBox: false ]
+      use: [ pngquant() ]
     .pipe(gulp.dest project.buildDir)
     .pipe(connect.reload())
 
@@ -62,8 +75,9 @@ gulp.task 'connect', ->
     livereload: true
 
 gulp.task 'watch', ['default', 'connect'], ->
-  gulp.watch project.srcDir + project.coffee, ['js']
-  gulp.watch project.srcDir + project.html, ['html']
-  gulp.watch project.srcDir + project.json, ['json']
   gulp.watch project.imgs, ['img']
-  gulp.src(project.index).pipe(open())
+  gulp.watch project.coffee, ['js']
+  gulp.watch project.html, ['html']
+  gulp.watch project.json, ['json']
+  gulp.src(__filename)
+    .pipe open uri: project.uri if project.open

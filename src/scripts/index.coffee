@@ -1,11 +1,12 @@
-AppointmentModel = require './model/Appointment.coffee'
-AppointmentView = require './view/Appointment.coffee'
+Model = require './model/Appointment.coffee'
+View = require './view/Appointment.coffee'
+{$} = require './util.coffee'
 
-App =
-  log: (app) ->
-    console.log app
-
-App.log new AppointmentModel()
-App.log new AppointmentView()
-
-module.exports = App
+(->
+  view = new View
+    model: new Model
+      title: 'Hello, World!'
+  view.render()
+  $ 'div#app'
+    .html view.el
+)()

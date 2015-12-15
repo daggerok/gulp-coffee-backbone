@@ -4,3 +4,5 @@ gulp-coffee-backbone [![build](https://travis-ci.org/daggerok/gulp-coffee-backbo
 `git clone ... && cd .../`
 
 `npm start`
+
+ps: Backbone is not so nice as angular or react, but with coffee we can code less... much less :)
