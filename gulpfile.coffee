@@ -2,7 +2,7 @@ project =
   srcDir:   './src/'
   buildDir: './dist/'
   modules:  './node_modules/'
-  main:     './src/index.coffee'
+  main:     './src/scripts/index.coffee'
   bundle:   'bundle.js'
   index:    './dist/index.html'
   imgs:     './src/img/**/*.*'
