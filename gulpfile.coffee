@@ -1,6 +1,7 @@
 project =
   srcDir:   './src/'
   buildDir: './dist/'
+  imgDir:   './src/img/'
   apiDir:   './src/api/'
   modules:  './node_modules/'
   mainJs:   'bundle.js'
@@ -40,11 +41,20 @@ gulp.task 'coffee', ->
     .pipe(connect.reload())
 
 gulp.task 'vendors', ->
-  gulp.src("#{project.modules}backbone/backbone.js", base: "#{project.modules}backbone/")
+  gulp.src([
+      "#{project.modules}jquery/dist/jquery.js"
+      "#{project.modules}underscore/underscore.js"
+      "#{project.modules}backbone/backbone.js"
+    ])
     .pipe(gulp.dest project.buildDir)
 
 gulp.task 'html', ->
   gulp.src(project.srcDir + project.html, base: project.srcDir)
+    .pipe(gulp.dest project.buildDir)
+    .pipe(connect.reload())
+
+gulp.task 'img', ->
+  gulp.src("#{project.imgDir}**/*.*", base: project.srcDir)
     .pipe(gulp.dest project.buildDir)
     .pipe(connect.reload())
 
@@ -53,7 +63,7 @@ gulp.task 'api', ->
     .pipe(gulp.dest project.buildDir)
     .pipe(connect.reload())
 
-gulp.task 'default', ['coffee', 'vendors', 'html', 'api']
+gulp.task 'default', ['coffee', 'vendors', 'html', 'img', 'api']
 
 gulp.task 'connect', ->
   connect.server
