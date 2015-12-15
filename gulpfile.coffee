@@ -4,6 +4,7 @@ project =
   imgDir:   './src/img/'
   apiDir:   './src/api/'
   modules:  './node_modules/'
+  vendorJs: 'vendor.js'
   mainJs:   'bundle.js'
   coffee:   '**/*.coffee'
   html:     '**/*.html'
@@ -46,6 +47,8 @@ gulp.task 'vendors', ->
       "#{project.modules}underscore/underscore.js"
       "#{project.modules}backbone/backbone.js"
     ])
+    .pipe(concat(project.vendorJs))
+      .on('error', log)
     .pipe(gulp.dest project.buildDir)
 
 gulp.task 'html', ->
