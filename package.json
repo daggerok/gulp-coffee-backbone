@@ -18,5 +18,23 @@
     "gulp-concat": "^2.6.0",
     "gulp-connect": "^2.2.0",
     "gulp-rimraf": "^0.2.0"
-  }
+  },
+  "description": "gulp-coffee-backbone [![build](https://travis-ci.org/daggerok/gulp-coffee-backbone.svg?branch=master)](https://travis-ci.org/daggerok/gulp-coffee-backbone) ====================",
+  "main": "dist/bundle.js",
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daggerok/gulp-coffee-backbone.git"
+  },
+  "keywords": [
+    "gulp",
+    "coffee-script",
+    "backbone"
+  ],
+  "author": "Maksim Kostromin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/daggerok/gulp-coffee-backbone/issues"
+  },
+  "homepage": "https://github.com/daggerok/gulp-coffee-backbone#readme"
 }
