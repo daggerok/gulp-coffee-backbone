@@ -10,7 +10,7 @@ View = require './view/Appointment.coffee'
 
   # register event listener
   model.on 'all', (event) ->
-    console.log event
+    #console.log event
   
   # fire event: change:name
   model.set
@@ -19,12 +19,14 @@ View = require './view/Appointment.coffee'
   view = new View
     model: model
 
-  view.render() # render hello..
-  $ 'div#app'
-    .html view.el
+  # render hello..
+  $('#app').html view.render()
 
   # fire event: change:title
   model.set
     title: 'Hello, World!'
-  view.render() # rerender: Hello, World!
+
+  # rerender: Hello, World!
+  view.render()
+  #console.log view.$el.html()
 )()
