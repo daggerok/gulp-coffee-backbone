@@ -1,0 +1,22 @@
+{
+  "name": "gulp-coffee-backbone",
+  "version": "1.0.0",
+  "scripts": {
+    "pregulp": "npm install",
+    "gulp": "gulp --require coffee-script/register",
+    "clear": "rm -rf dist/ node_modules/",
+    "clean": "npm run gulp clean",
+    "build": "npm run gulp",
+    "start": "npm run gulp watch"
+  },
+  "devDependencies": {
+    "backbone": "^1.2.3",
+    "coffee-script": "^1.10.0",
+    "colors": "^1.1.2",
+    "gulp": "^3.9.0",
+    "gulp-coffee": "^2.3.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-connect": "^2.2.0",
+    "gulp-rimraf": "^0.2.0"
+  }
+}
