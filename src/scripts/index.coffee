@@ -1,5 +1,5 @@
-Model = require './model/Appointment.coffee'
-View = require './view/Appointment.coffee'
+Model = require './model/HelloWorld.coffee'
+View = require './view/HelloWorld.coffee'
 {$} = require './util.coffee'
 
 (->
