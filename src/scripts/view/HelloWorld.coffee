@@ -1,19 +1,23 @@
 {Backbone, $, _} = require '../util.coffee'
 
-HelloWorld = Backbone.View.extend
+HelloWorldView = Backbone.View.extend
   tagName: 'pre'
-  className: 'HelloWorld'
+  className: 'HelloWorldView'
 
-  template: _.template '<h1><%= title %></h1><p><%= clicks %> clicks</p>'
+  initialize: ->
+    @model.on 'change', @render, @
+    @model.on 'destroy', @remove, @
+
+  template: _.template '''
+<h1><%= title %></h1><p><%= clicks %> clicks</p><div>click on me twice to remove</div>
+'''
   
   render: ->
     @$el.html @template @model.toJSON()
 
-  onClick: ->
-    @model.set 'clicks', 1 + @model.get 'clicks'
-
+  # events
   events:
-    'click h1': (event) ->
-      @onClick() && @render()
+    'click h1,p'    : (event) -> @model.increment()
+    'dblclick div': (event) -> @model.destroy()
 
-module.exports = HelloWorld
+module.exports = HelloWorldView

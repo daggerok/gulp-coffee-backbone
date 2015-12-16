@@ -6,7 +6,7 @@ project =
   coffee:   'src/**/*.coffee'
   html:     'src/**/*.html'
   imgs:     'src/img/**/*.*'
-  json:     'src/**/*.json'
+  json:     'src/api/**/*.json'
   uri:      'http://localhost:8080/'
   open:     false
 
@@ -63,7 +63,7 @@ gulp.task 'img', ->
     .pipe(connect.reload())
 
 gulp.task 'json', ->
-  gulp.src(project.srcDir + project.json, base: project.srcDir)
+  gulp.src(project.json, base: project.srcDir)
     .pipe(gulp.dest project.buildDir)
     .pipe(connect.reload())
 

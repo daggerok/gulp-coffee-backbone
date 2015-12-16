@@ -1,0 +1,5 @@
+[
+  { "id": 1, "title": "first zero model", "clicks": 0 },
+  { "id": 2, "title": "2nd model", "clicks": 111 },
+  { "id": 3, "title": "Negative model", "clicks": -2 }
+]

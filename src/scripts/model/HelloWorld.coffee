@@ -1,9 +1,12 @@
 {Backbone} = require '../util.coffee'
 
-HelloWorld = Backbone.Model.extend
+HelloWorldModel = Backbone.Model.extend
   # default model properties:
   defaults: ->
     title: 'HelloWorld'
     clicks: 0
+  # model specific methods
+  increment: (value = 1) ->
+    @.set 'clicks', value + @.get 'clicks'
 
-module.exports = HelloWorld
+module.exports = HelloWorldModel
