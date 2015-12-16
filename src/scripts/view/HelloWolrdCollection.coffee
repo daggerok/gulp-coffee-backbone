@@ -1,17 +1,19 @@
 {Backbone, $, _} = require '../util.coffee'
-HelloWorldCollection = require '../model/HelloWorldCollection.coffee'
-HelloWorld = require '../model/HelloWorld.coffee'
 HelloWorldView = require './HelloWorld.coffee'
 
 HelloWorldCollectionView = Backbone.View.extend
   el: $ '#collection'
 
+  initialize: ->
+    @collection.bind 'reset', @render, @
+    # @collection.fetch reset: true
+
   render: ->
     @collection.forEach (model) ->
-      @addOne model, @
+      @addOne model
 
   addOne: (model) ->
-    view = new HelloWorldView nodel: model
-    @$el.append view.render()    
+    view = new HelloWorldView model: model
+    @$el.html view.render()
 
 module.exports = HelloWorldCollectionView
